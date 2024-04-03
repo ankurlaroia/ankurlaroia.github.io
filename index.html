@@ -18,7 +18,6 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="#hi">Hi</a></li>
-                        <!-- Change the href to point to resume.html -->
                         <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#github">GitHub</a></li>
@@ -30,7 +29,6 @@
     </header>
 
     <main>
-
         <section id="hi" class="py-5">
             <div class="container">
                 <h2>Hi!</h2>
@@ -80,7 +78,6 @@
                             <li>Social media marketing, and design leadership.</li>
                             <li>Programming languages: R, Python, SQL.</li>
                             <li>Machine learning libraries and frameworks: TensorFlow, scikit-learn, Pandas, Numpy, Matplotlib.</li>
-                            <!-- Add more skills as needed -->
                         </ul>
                     </div>
                 </div>
@@ -90,23 +87,14 @@
                         <h3>Projects</h3>
                         <h4>Credit Risk Modeling</h4>
                         <p>Developed and deployed a sophisticated machine learning model using TensorFlow, achieving a 96.1% accuracy rate in predicting customer churn.</p>
-                        <!-- Add more projects as needed -->
                     </div>
                     <div class="col-md-6">
                         <h3>Professional Experience</h3>
                         <h4>Data Science Intern</h4>
                         <p><strong>Wolters Kluwer, Houston, Texas</strong>, Jun. 2023 - Aug. 2023</p>
                         <p>Demonstrated expertise in designing predictive models and implementing AI solutions to address governance, risk, and compliance challenges within dynamic markets during an internship tenure.</p>
-                        <!-- Add more professional experiences as needed -->
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="py-5">
-            <div class="container">
-                <h2>Portfolio</h2>
-                <!-- Portfolio section content -->
             </div>
         </section>
 
@@ -126,21 +114,19 @@
             </div>
         </section>
 
-        <!-- Chat widget section -->
-        <section id="chat" class="bg-dark py-5 text-white">
-            <div class="container">
-                <h2>Chat with Me</h2>
-                <div class="chat-form">
-                    <form id="message-form" action="/send-email" method="post">
-                        <input type="text" id="name-input" name="name" placeholder="Your Name" class="form-control mb-2">
-                        <input type="email" id="email-input" name="email" placeholder="Your Email Address" required class="form-control mb-2">
-                        <textarea id="message-input" name="message" placeholder="Type your message..." required class="form-control mb-2"></textarea>
-                        <input type="submit" value="Send" class="btn btn-primary">
-                    </form>
-                </div>
+        <div id="chat-widget" class="chat-widget">
+            <div class="chat-form">
+                <form id="message-form" action="/send-email" method="post">
+                    <input type="text" id="name-input" name="name" placeholder="Your Name" class="form-control mb-2">
+                    <input type="email" id="email-input" name="email" placeholder="Your Email Address" required class="form-control mb-2">
+                    <textarea id="message-input" name="message" placeholder="Type your message..." required class="form-control mb-2"></textarea>
+                    <input type="submit" value="Send" class="btn btn-primary">
+                </form>
+                <button id="minimize-button" class="minimize-button btn btn-secondary">minimize</button>
             </div>
-        </section>
-
+        </div>
+        <!-- Minimized chat button -->
+        <div id="minimized-chat-button" class="minimize-button minimized">Chat</div>
     </main>
 
     <footer class="bg-dark py-3 text-white">
@@ -149,11 +135,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
