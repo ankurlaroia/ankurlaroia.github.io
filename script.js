@@ -1,85 +1,62 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll("section");
+const express = require('express');
+const path = require('path');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("section-visible");
-            }
-        });
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware to parse JSON and URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Serve static files from the current directory
+app.use(express.static(__dirname));
+
+// POST endpoint to send email
+app.post('/send-email', (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+    const message = req.body.message;
+
+    // Create a string containing name, email, and message
+    const emailContent = `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`;
+
+    // Create a Nodemailer transporter using your email provider's SMTP settings
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'ankurlaroia1@gmail.com', // Your email address
+            pass: process.env.EMAIL_PASSWORD // Use environment variable for email password
+        }
     });
 
-    sections.forEach(section => {
-        observer.observe(section);
+    // Set up email data
+    const mailOptions = {
+        from: email, // Sender's email address
+        to: 'ankurlaroia1@gmail.com', // Receiver's email address
+        subject: 'New message from portfolio website',
+        text: emailContent // Use the created string as the email body
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.status(500).send('Error sending email');
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).send('Email sent successfully');
+        }
     });
+});
 
-    // Add event listener for submitting the message form
-    document.getElementById("message-form").addEventListener("submit", function(event) {
-        event.preventDefault();
+// Route handler for serving resume.html
+app.get('/resume', (req, res) => {
+    res.sendFile(path.join(__dirname, 'resume.html'));
+});
 
-        // Get the values of name, email, and message fields
-        const name = document.getElementById("name-input").value;
-        const email = document.getElementById("email-input").value;
-        const message = document.getElementById("message-input").value;
-
-        // Create a plain text body
-        const body = `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
-
-        // Send the POST request
-        fetch('/send-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: body
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.text();
-            } else {
-                throw new Error('Error sending email');
-            }
-        })
-        .then(data => {
-            alert(data); // Display success message
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error sending email');
-        });
-
-        // Clear the input fields
-        document.getElementById("name-input").value = "";
-        document.getElementById("email-input").value = "";
-        document.getElementById("message-input").value = "";
-    });
-
-    // Get references to the form fields
-    const nameField = document.getElementById("name-input");
-    const emailField = document.getElementById("email-input");
-    const messageField = document.getElementById("message-input");
-
-    // Add event listener for the minimize button
-    document.getElementById("minimize-button").addEventListener("click", function() {
-        const chatWidget = document.getElementById("chat-widget");
-        const minimizedElements = [nameField, emailField, messageField];
-
-        chatWidget.classList.toggle("minimized");
-
-        minimizedElements.forEach(element => {
-            element.classList.toggle("hidden");
-        });
-    });
-
-    // Add event listener for restoring the chat
-    document.getElementById("minimized-chat-button").addEventListener("click", function() {
-        const chatWidget = document.getElementById("chat-widget");
-        const minimizedElements = [nameField, emailField, messageField];
-
-        chatWidget.classList.remove("minimized");
-
-        minimizedElements.forEach(element => {
-            element.classList.remove("hidden");
-        });
-    });
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
