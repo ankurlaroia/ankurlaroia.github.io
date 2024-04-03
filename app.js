@@ -22,14 +22,12 @@ app.post('/send-email', (req, res) => {
     // Create a string containing name, email, and message
     const emailContent = `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`;
 
-    // Create a Nodemailer transporter using Ethereal email service
+    // Create a Nodemailer transporter using your email provider's SMTP settings
     const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
+        service: 'Gmail',
         auth: {
-            user: 'virginia1@ethereal.email', // Your Ethereal email address
-            pass: 'rF576Fua5gEtae1Yb8' // Your Ethereal email password
+            user: 'ankurlaroia1@gmail.com', // Your email address
+            pass: process.env.EMAIL_PASSWORD // Use environment variable for email password
         }
     });
 
