@@ -139,14 +139,26 @@
         <div id="chat-widget" class="chat-widget">
             <div class="chat-form">
                 <form id="message-form" action="https://formspree.io/f/mgegnqjn" method="POST">
-                    <input type="text" id="name-input" name="name" placeholder="Your Name" class="form-control mb-2">
-                    <input type="email" id="email-input" name="email" placeholder="Your Email Address" required class="form-control mb-2">
-                    <textarea id="message-input" name="message" placeholder="Type your message..." required class="form-control mb-2"></textarea>
-                    <input type="submit" value="Send" class="btn btn-primary">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name-input" name="name" placeholder="Your Name" class="form-control mb-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email:</label>
+                        <input type="email" id="email-input" name="email" placeholder="Your Email Address" required class="form-control mb-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message:</label>
+                        <textarea id="message-input" name="message" placeholder="Type your message..." required class="form-control mb-2"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </form>
                 <button id="minimize-button" class="minimize-button btn btn-secondary">minimize</button>
             </div>
         </div>
+<!-- Minimized chat button -->
+<div id="minimized-chat-button" class="minimize-button minimized">Chat</div>
+
         <!-- Minimized chat button -->
         <div id="minimized-chat-button" class="minimize-button minimized">Chat</div>
     </main>
