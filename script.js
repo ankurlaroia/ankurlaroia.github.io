@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Function to toggle navigation bar color based on the theme
+    // Function to toggle navigation bar color scheme based on the theme
     function toggleNavbarColorScheme() {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         const navbar = document.querySelector('.navbar');
@@ -74,14 +74,14 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(section);
     });
 
-    // Handling form submission with Fetch API
-    const form = document.getElementById('contact-form');
-    if (form) {
-        form.addEventListener('submit', function(event) {
+    // Handling form submission with Fetch API for the contact form
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default submission
 
-            const formData = new FormData(form);
-            fetch('YOUR_ENDPOINT_HERE', { // Replace 'YOUR_ENDPOINT_HERE' with your form submission endpoint
+            const formData = new FormData(contactForm);
+            fetch('https://formspree.io/f/mgegnqjn', { // Replace with your form submission endpoint
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json', // Ensure the server responds with JSON
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 console.log('Success:', data);
                 alert('Form successfully submitted');
-                form.reset(); // Reset form fields after submission
+                contactForm.reset(); // Reset form fields after submission
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -106,4 +106,57 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+
+    // Handling form submission with Fetch API for the chat widget
+    const chatForm = document.getElementById('chat-widget');
+    if (chatForm) {
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default submission
+
+            const name = document.getElementById("name-input").value;
+            const email = document.getElementById("email-input").value;
+            const message = document.getElementById("message-input").value;
+
+            const body = `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
+
+            fetch('https://formspree.io/f/mgegnqjn', { // Replace with your form submission endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: body
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Error sending message');
+                }
+            })
+            .then(data => {
+                alert(data); // Display success message
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error sending message');
+            });
+
+            // Clear the input fields
+            document.getElementById("name-input").value = "";
+            document.getElementById("email-input").value = "";
+            document.getElementById("message-input").value = "";
+        });
+    }
+
+    // Event listener for minimizing the chat widget
+    document.getElementById("minimize-button").addEventListener("click", function() {
+        const chatWidget = document.getElementById("chat-widget");
+        chatWidget.classList.toggle("minimized");
+    });
+
+    // Event listener for restoring the chat widget
+    document.getElementById("minimized-chat-button").addEventListener("click", function() {
+        const chatWidget = document.getElementById("chat-widget");
+        chatWidget.classList.remove("minimized");
+    });
 });
