@@ -133,43 +133,4 @@ body {
     padding-bottom: 50px; /* Adjust the value based on the footer's height */
 }
 
-/* Styles for chat widget */
-.chat-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    z-index: 9999;
-    max-width: 300px;
-}
 
-.chat-widget.minimized {
-    max-width: 50px;
-    max-height: 50px;
-    overflow: hidden;
-}
-
-.minimize-button {
-    display: block;
-    margin-top: 10px;
-}
-
-.minimized {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 9999;
-}
