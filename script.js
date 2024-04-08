@@ -1,89 +1,109 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const sections = document.querySelectorAll("section");
+    // Function to check and apply the navigation bar styling on scroll
+    function checkNavBarScroll() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('nav-scrolled');
+        } else {
+            header.classList.remove('nav-scrolled');
+        }
+    }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("section-visible");
-      }
+    // Function to toggle navigation bar color based on the theme
+    function toggleNavbarColorScheme() {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const navbar = document.querySelector('.navbar');
+        if (mediaQuery.matches) {
+            // If the user has set their system to dark mode
+            navbar.classList.remove('navbar-light');
+            navbar.classList.add('navbar-dark');
+        } else {
+            // If the user has set their system to light mode or has no preference
+            navbar.classList.remove('navbar-dark');
+            navbar.classList.add('navbar-light');
+        }
+    }
+
+    // Call the function on page load and when the color scheme preference changes
+    toggleNavbarColorScheme();
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(toggleNavbarColorScheme);
+
+    // Initial check in case the page is not at the top when refreshed or loaded
+    checkNavBarScroll();
+
+    // Smooth scrolling for nav links - Requires jQuery, make sure jQuery is included
+    $('.navbar a.nav-link').on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                var scrolledY = window.scrollY;
+                if (history.pushState) {
+                    history.pushState(null, null, hash);
+                } else {
+                    window.location.hash = hash;
+                }
+                window.scrollTo(0, scrolledY);
+            });
+        }
     });
-  });
 
-  sections.forEach(section => {
-    observer.observe(section);
-  });
+    // Add the scroll event listener to the window for checking the navigation bar's style
+    window.addEventListener('scroll', checkNavBarScroll);
 
-  // Add event listener for submitting the message form
-  document.getElementById("message-form").addEventListener("submit", function(event) {
-    event.preventDefault();
+    // Intersection Observer for animating section visibility
+    const sections = document.querySelectorAll("section");
+    const observerOptions = {
+        rootMargin: '0px',
+        threshold: 0.25
+    };
 
-    // Get the values of name, email, and message fields
-    const name = document.getElementById("name-input").value;
-    const email = document.getElementById("email-input").value;
-    const message = document.getElementById("message-input").value;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("section-visible");
+            } else {
+                entry.target.classList.remove("section-visible");
+            }
+        });
+    }, observerOptions);
 
-    // Create a plain text body
-    const body = `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
-
-    // Send the POST request
-    fetch('/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: body
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        throw new Error('Error sending email');
-      }
-    })
-    .then(data => {
-      alert(data); // Display success message
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Error sending email');
+    sections.forEach(section => {
+        observer.observe(section);
     });
 
-    // Clear the input fields
-    document.getElementById("name-input").value = "";
-    document.getElementById("email-input").value = "";
-    document.getElementById("message-input").value = "";
-  });
+    // Handling form submission with Fetch API
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default submission
 
-  // Get references to the form fields
-  const nameField = document.getElementById("name-input");
-  const emailField = document.getElementById("email-input");
-  const messageField = document.getElementById("message-input");
-
-  // Add event listener for the minimize button
-  document.getElementById("minimize-button").addEventListener("click", function() {
-    const chatWidget = document.getElementById("chat-widget");
-    const minimizedElements = [nameField, emailField, messageField];
-
-    chatWidget.classList.toggle("minimized");
-
-    minimizedElements.forEach(element => {
-      element.classList.toggle("hidden");
-    });
-  });
-
-  // Add event listener for restoring the chat
-  document.getElementById("minimized-chat-button").addEventListener("click", function() {
-    const chatWidget = document.getElementById("chat-widget");
-    const minimizedElements = [nameField, emailField, messageField];
-
-    chatWidget.classList.remove("minimized");
-
-    minimizedElements.forEach(element => {
-      element.classList.remove("hidden");
-    });
-  });
+            const formData = new FormData(form);
+            fetch('YOUR_ENDPOINT_HERE', { // Replace 'YOUR_ENDPOINT_HERE' with your form submission endpoint
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json', // Ensure the server responds with JSON
+                },
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Form successfully submitted');
+                form.reset(); // Reset form fields after submission
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form. Please try again.');
+            });
+        });
+    }
 });
-
-function closeChat() {
-  document.getElementById("popup-chat").style.display = "none";
-}
