@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="bg-dark py-3">
+    <header>
         <div class="container">
-            <nav class="navbar navbar-dark navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg navbar ">
                 <a class="navbar-brand" href="#">Ankur Laroia</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#hi">Hi</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#github">GitHub</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#linkedin">LinkedIn</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://github.com/ankurlaroia">GitHub</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/ankurlaroia1/">LinkedIn</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </nav>
@@ -29,145 +30,46 @@
     </header>
 
     <main>
-        <section id="hi" class="py-5">
+        <section id="home" class="py-5 text-center">
             <div class="container">
-                <h2>Hi!</h2>
-                <p>Welcome to my portfolio website. Feel free to explore!</p>
+                <h1 class="display-4">Welcome to Ankur Laroia's Portfolio</h1>
+                <p class="lead">Empowering data-driven decisions with advanced analytics and machine learning. Explore my work and journey through data science and technology.</p>
             </div>
         </section>
 
-        <section id="resume" class="py-5">
+        <!-- Additional content based on your resume details -->
+
+        <section id="portfolio" class="py-5">
             <div class="container">
-                <h2>Resume</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Ankur Laroia</h3>
-                        <ul>
-                            <li><strong>Phone:</strong> +1-945-244-7727</li>
-                            <li><strong>Email:</strong> ankurlaroia28@gmail.com</li>
-                            <li><strong>Location:</strong> Plano, Texas, 75075</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <h3>Education</h3>
-                        <ul>
-                            <li>
-                                <h4>Master of Science, Business Analytics Data Science Cohort</h4>
-                                <p><strong>The University of Texas at Dallas</strong>, May. 2024</p>
-                            </li>
-                            <li>
-                                <h4>Bachelor of Technology, Computer Science Engineering</h4>
-                                <p><strong>SRM Institute of Science and Technology, Chennai, India</strong>, May. 2021</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <h2>Portfolio</h2>
+                    <div class="jumbotron">
+        <h1 class="display-4">About Ankur Laroia</h1>
+        <p class="lead">Passionate Data Scientist and Machine Learning Engineer</p>
+    </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Certification</h3>
-                        <ul>
-                            <li><strong>AWS Cloud Practitioner Certification</strong>, Dec. 2023</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <h3>Skills</h3>
-                        <ul>
-                            <li>Effective communication, customer service, and decision-making with an analytical approach.</li>
-                            <li>Self-motivated team player with extensive experience in content creation.</li>
-                            <li>Social media marketing, and design leadership.</li>
-                            <li>Programming languages: R, Python, SQL.</li>
-                            <li>Machine learning libraries and frameworks: TensorFlow, scikit-learn, Pandas, Numpy, Matplotlib.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Projects</h3>
-                        <h4>Credit Risk Modeling</h4>
-                        <p>Developed and deployed a sophisticated machine learning model using TensorFlow, achieving a 96.1% accuracy rate in predicting customer churn.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h3>Professional Experience</h3>
-                        <h4>Data Science Intern</h4>
-                        <p><strong>Wolters Kluwer, Houston, Texas</strong>, Jun. 2023 - Aug. 2023</p>
-                        <p>Demonstrated expertise in designing predictive models and implementing AI solutions to address governance, risk, and compliance challenges within dynamic markets during an internship tenure.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="github" class="bg-light py-5">
-            <div class="container">
-                <h2>Github</h2>
-                <p>Add your GitHub link here:</p>
-                <p><a href="https://github.com/ankurlaroia">https://github.com/ankurlaroia</a></p>
-            </div>
-        </section>
-
-        <section id="linkedin" class="bg-light py-5">
-            <div class="container">
-                <h2>LinkedIn</h2>
-                <p>Add your LinkedIn link here:</p>
-                <p><a href="https://www.linkedin.com/in/ankurlaroia1/">https://www.linkedin.com/in/ankurlaroia1/</a></p>
-            </div>
-        </section>
-
-        <section id="contact" class="py-5">
-            <div class="container">
-                <h2>Contact Me</h2>
-                <p>Feel free to get in touch with me using the form below:</p>
-                <form action="https://formspree.io/f/mgegnqjn" method="POST">
-                    <div class="form-group">
-                        <label for="name">Your Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message:</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </section>
-
-    <div id="chat-widget" class="chat-widget">
-        <div class="card">
-            <div class="card-body">
-                <form action="https://formspree.io/f/mgegnqjn" method="POST">
-                    <div class="form-group">
-                        <label for="name">Your Name:</label>
-                        <input type="text" id="name-input" name="name" placeholder="Your Name" class="form-control mb-2">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email:</label>
-                        <input type="email" id="email-input" name="email" placeholder="Your Email Address" required class="form-control mb-2">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message:</label>
-                        <textarea id="message-input" name="message" placeholder="Type your message..." required class="form-control mb-2"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-                <button id="minimize-button" class="minimize-button btn btn-secondary">Minimize</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-justify">Greetings,</p>
+                <p class="text-justify">I'm Ankur Laroia, a passionate Data Scientist and Machine Learning Engineer driven by the pursuit of leveraging data to fuel innovation and drive strategic decision-making. With a solid educational background, including a Master's degree in Business Analytics Data Science Cohort from The University of Texas at Dallas and a Bachelor's in Computer Science Engineering from SRM Institute of Science and Technology, I possess a robust blend of theoretical knowledge and practical expertise.</p>
+                <p class="text-justify">Certified as an AWS Cloud Practitioner, I pride myself on my ability to communicate effectively, provide exceptional customer service, and make informed decisions using an analytical approach. My technical skills encompass a wide range of programming languages, including R, Python, and SQL, along with proficiency in machine learning libraries such as TensorFlow and scikit-learn, and data visualization tools like Tableau and PowerBI.</p>
+                <p class="text-justify">My project portfolio reflects my commitment to delivering impactful results. From developing sophisticated machine learning models for credit risk modeling to spearheading initiatives in diabetic retinopathy detection, I've consistently demonstrated my ability to preprocess data, engineer features, and deploy models effectively. My professional experience as a Data Science Intern at Wolters Kluwer and Programmer Analyst at Cognizant Technology Solutions has honed my ability to drive actionable insights and facilitate tangible improvements in business performance.</p>
+                <p class="text-justify">I'm passionate about exploring opportunities to collaborate on exciting projects and make a meaningful impact in the field of data science and machine learning. Let's connect on <a href="https://www.linkedin.com/in/ankurlaroia1/" class="btn">LinkedIn</a> and embark on a journey of transformative data-driven decision-making.</p>
+                <p class="text-justify mb-0">Best regards,<br>Ankur Laroia</p>
             </div>
         </div>
     </div>
-    
-    <!-- Minimized chat button -->
-        <div id="minimized-chat-button" class="minimize-button minimized">Chat</div>
-    </main>
+                <!-- Portfolio items -->
+            </div>
+        </section>
 
-    <footer class="bg-dark py-3 text-white">
-        <div class="container text-center">
-            <p>&copy; 2024 Ankur Laroia</p>
-        </div>
-    </footer>
+        <footer class="bg-dark py-3 text-white">
+            <div class="container text-center">
+                <p>&copy; 2024 Ankur Laroia. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
